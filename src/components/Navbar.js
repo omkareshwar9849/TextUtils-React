@@ -30,6 +30,15 @@ export default function Navbar(props) {
                         <li className="nav-item">
                             <Link className="nav-link" to="/help">Help</Link>
                         </li>
+                        {!props.isLoggedIn ? (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login">Login</Link>
+                            </li>
+                        ) : (
+                            <li className="nav-item">
+                                <button className="nav-link btn btn-link" onClick={props.handleLogout} style={{ cursor: 'pointer', border: 'none', background: 'none', padding: '0.5rem 1rem' }}>Logout</button>
+                            </li>
+                        )}
                     </ul>
                     <div style={{ backgroundColor: 'white' }} className="mx-3 btn-group" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off" onClick={props.toggleLMode} />
@@ -49,7 +58,13 @@ export default function Navbar(props) {
 
 Navbar.propTypes = {
     title: PropTypes.string.isRequired,
-    aboutText: PropTypes.string.isRequired
+    aboutText: PropTypes.string.isRequired,
+    isLoggedIn: PropTypes.bool,
+    handleLogout: PropTypes.func,
+    mode: PropTypes.string,
+    toggleLMode: PropTypes.func,
+    toggleDMode: PropTypes.func,
+    togglePMode: PropTypes.func
 }
 
 Navbar.defaultProps = {

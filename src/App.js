@@ -14,6 +14,7 @@ import {
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const showAlert = (message, type) => {
     setAlert({
@@ -23,6 +24,14 @@ function App() {
     setTimeout(() => {
       setAlert(null)
     }, 1500);
+  }
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  }
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
   }
 
   const togglePMode = () => {
@@ -46,8 +55,8 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar title="TextUtils" mode={mode} toggleDMode={toggleDMode} toggleLMode={toggleLMode} togglePMode={togglePMode} />
-        <Alert alert={alert} />
+        <Navbar title="TextUtils" aboutText="About" mode={mode} toggleDMode={toggleDMode} toggleLMode={toggleLMode} togglePMode={togglePMode} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+        <Alert alert={alert} mode={mode} />
         <div className="container my-3">
           <Switch>
             <Route exact path="/about">

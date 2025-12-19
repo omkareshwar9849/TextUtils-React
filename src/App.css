@@ -40,3 +40,10 @@
 .blank{
   color: rgb(32, 8, 246);
 }
+
+.login-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 50px;
+}
