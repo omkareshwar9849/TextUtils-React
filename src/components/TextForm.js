@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 
+// Check if the browser supports Web Speech API
+const isSpeechSynthesisSupported = typeof window !== 'undefined' && window.speechSynthesis !== undefined;
 
 export default function TextForm(props) {
     
@@ -11,10 +13,13 @@ export default function TextForm(props) {
     }
 
     const speak = () => {
-        let msg = new SpeechSynthesisUtterance();
-        msg.text = text;
-        window.speechSynthesis.speak(msg);
-        props.showAlert("Speaking....","success");
+        // Only execute if Web Speech API is supported
+        if (isSpeechSynthesisSupported) {
+            let msg = new SpeechSynthesisUtterance();
+            msg.text = text;
+            window.speechSynthesis.speak(msg);
+            props.showAlert("Speaking....","success");
+        }
       }
     
     const handelundo = () =>{
@@ -110,7 +115,7 @@ export default function TextForm(props) {
                 <button style={btnstyle(props.mode)} disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelundo}>UNDO</button>
                 <button style={btnstyle(props.mode)} disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
                 <button style={btnstyle(props.mode)} disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLowClick}>Convert to Lowercase</button>
-                <button style={btnstyle(props.mode)} disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={speak}> Speak </button>
+                {isSpeechSynthesisSupported && <button style={btnstyle(props.mode)} disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={speak}> Speak </button>}
                 <button style={btnstyle(props.mode)} disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopy}>Copy Text</button>
                 <button style={btnstyle(props.mode)} disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
             </div>
@@ -124,8 +129,8 @@ export default function TextForm(props) {
                     <button style={btnstyle(props.mode)} disabled={fWord.length===0} className="btn btn-primary mx-1 my-1" onClick={handlereplace}> Replace </button>
                     <button style={btnstyle(props.mode)} disabled={fWord.length===0} className="btn btn-primary mx-1 my-1" onClick={handleRClear}> Clear </button>
                 </div>
-                <h2 className='my-2'>Yout text summary</h2>
-                <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+                <h2 className=\'my-2\'>Your text summary</h2>
+                <p>{text.trim().length > 0 ? text.trim().split(/\s+/).length : 0} words and {text.length} characters</p>
                 <p>{0.008 * text.split(/\s+/).filter((element)=>{return element.length!==0}).length} Minutes needed</p>
                 <h2>Preview</h2>
                 <p>{text === "" ? "Nothing to preview.!!" : text}</p>
