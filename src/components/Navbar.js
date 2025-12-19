@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {Link} from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
-const navstyle=(mode)=>{
-    if(mode === 'purple'){
+const navstyle = (mode) => {
+    if (mode === 'purple') {
         return {
-            backgroundColor : '#432874',
+            backgroundColor: '#432874',
             color: 'white'
         }
     }
@@ -13,7 +13,7 @@ const navstyle=(mode)=>{
 
 export default function Navbar(props) {
     return (
-        <nav style={navstyle(props.mode)} className ={ `navbar border-bottom border-${props.mode==='light'?'dark':'light'} navbar-expand-lg navbar-${props.mode==='light'?'light':'dark'} bg-${props.mode}` }>
+        <nav style={navstyle(props.mode)} className={`navbar border-bottom border-${props.mode === 'light' ? 'dark' : 'light'} navbar-expand-lg navbar-${props.mode === 'light' ? 'light' : 'dark'} bg-${props.mode}`}>
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/TextUtils-React">{props.title}</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,16 +27,19 @@ export default function Navbar(props) {
                         <li className="nav-item">
                             <Link className="nav-link" to="/about">{props.aboutText}</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/help">Help</Link>
+                        </li>
                     </ul>
-                    <div style={{backgroundColor :'white'}} class="mx-3 btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"  onClick={props.toggleLMode}/>
-                        <label class="btn btn-outline-primary" htmlFor="btnradio1">Light Mode</label>
+                    <div style={{ backgroundColor: 'white' }} className="mx-3 btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off" onClick={props.toggleLMode} />
+                        <label className="btn btn-outline-primary" htmlFor="btnradio1">Light Mode</label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onClick={props.toggleDMode}/>
-                        <label class="btn btn-outline-primary" htmlFor="btnradio2">Dark Mode</label>
+                        <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autoComplete="off" onClick={props.toggleDMode} />
+                        <label className="btn btn-outline-primary" htmlFor="btnradio2">Dark Mode</label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" onClick={props.togglePMode}/>
-                        <label class="btn btn-outline-primary" htmlFor="btnradio3">Purple Mode</label>
+                        <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autoComplete="off" onClick={props.togglePMode} />
+                        <label className="btn btn-outline-primary" htmlFor="btnradio3">Purple Mode</label>
                     </div>
                 </div>
             </div>
@@ -52,4 +55,4 @@ Navbar.propTypes = {
 Navbar.defaultProps = {
     title: 'Set title here',
     aboutText: 'About'
-  };
+}
