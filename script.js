@@ -9,7 +9,7 @@ const question = {
     options: ["Paris", "London", "Berlin", "Madrid"],
     correctAnswer: "Paris"
 };
-
+// testing
 // Display the question and options
 function displayQuestion() {
     questionContainer.textContent = question.questionText;
