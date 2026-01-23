@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 import HelpPage from './components/HelpPage';
+import Books from './components/Books';
 import {
   BrowserRouter as Router,
   Switch,
@@ -56,6 +57,10 @@ function App() {
 
             <Route exact path="/help">
               <HelpPage mode={mode} />
+            </Route>
+
+            <Route exact path="/books">
+              <Books mode={mode} toggleDMode={toggleDMode} toggleLMode={toggleLMode} togglePMode={togglePMode} />
             </Route>
 
             <Route exact path="/TextUtils-React">
